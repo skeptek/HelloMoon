@@ -1,5 +1,6 @@
 package com.bignerdranch.android.hellomoon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ public class HelloMoonFragment extends Fragment {
 	private Button mPlayButton;
 	private Button mStopButton;
 	private Button mPauseButton;
+	private Button mVideoButton;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -42,6 +44,17 @@ public class HelloMoonFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				mPlayer.pause(getActivity());
+			}
+		});
+		
+		mVideoButton = (Button)v.findViewById(R.id.hellomoon_videoButton);
+		mVideoButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(getActivity(), HelloMoonVideoActivity.class);
+				startActivity(i);
 			}
 		});
 		
