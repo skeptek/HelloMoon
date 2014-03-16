@@ -1,14 +1,16 @@
 package com.bignerdranch.android.hellomoon;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.VideoView;
 
 public class HelloMoonFragment extends Fragment {
-	private AudioPlayer mPlayer = new AudioPlayer();
+	private VideoView videoView;
 	private Button mPlayButton;
 	private Button mStopButton;
 	private Button mPauseButton;
@@ -23,7 +25,13 @@ public class HelloMoonFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				mPlayer.play(getActivity());
+				//mPlayer.play(getActivity());
+				videoView = (VideoView)getActivity().findViewById(R.id.VideoView);
+				Uri video = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" 
+						+ R.raw.apollo_17_stroll);
+				videoView.setVideoURI(video);
+				//getActivity().setContentView(videoView);
+				videoView.start();
 			}
 		});
 		
@@ -32,7 +40,8 @@ public class HelloMoonFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				mPlayer.stop();
+				//mPlayer.stop();
+				videoView.stopPlayback();
 			}
 		});
 		
@@ -41,7 +50,7 @@ public class HelloMoonFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				mPlayer.pause(getActivity());
+				//mPlayer.pause(getActivity());
 			}
 		});
 		
@@ -52,7 +61,7 @@ public class HelloMoonFragment extends Fragment {
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		mPlayer.stop();
+		//mPlayer.stop();
 	}
 	
 }
